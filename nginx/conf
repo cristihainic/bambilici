@@ -1,0 +1,17 @@
+upstream backend {
+        server game_engine:8000;
+}
+
+server {
+        listen 80 default_server;
+
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name localhost;
+
+        location / {
+                proxy_pass http://backend;
+        }
+
+}
